@@ -1,0 +1,8 @@
+body {
+  background: #edf6ff;
+  z-index: -2;
+}
+
+.gradiant-bg {
+  background: linear-gradient(248deg, #303f60, #1a253c);
+}
