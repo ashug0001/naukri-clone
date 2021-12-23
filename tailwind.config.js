@@ -5,6 +5,8 @@ module.exports = {
       colors: {
         blue: "#43AFFF",
         primary: "#303F60",
+        inputBG: "#E8E8E833",
+        grayBorder: "#C6C6C6",
       },
     },
   },
