@@ -8,6 +8,7 @@ import ResetPassword from "./pages/ResetPassword";
 import SignUp from "./pages/SignUp";
 
 import { Layout } from "./components";
+import PostJob from "./pages/PostJob";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/post-job" element={<PostJob />} />
         </Routes>
       </BrowserRouter>
     </Layout>
