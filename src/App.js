@@ -13,8 +13,8 @@ import Posts from "./pages/Posts";
 
 function App() {
   return (
-    <Layout>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -24,8 +24,8 @@ function App() {
           <Route path="/posts" element={<Posts posts={[{ id: 1 }]} />} />
           <Route path="/post-job" element={<PostJob />} />
         </Routes>
-      </BrowserRouter>
-    </Layout>
+      </Layout>
+    </BrowserRouter>
   );
 }
 

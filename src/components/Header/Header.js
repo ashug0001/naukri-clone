@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { NavLink } from "react-router-dom";
 
 const navigation = [{ name: "Logout", href: "#", current: true }];
 
@@ -69,12 +70,17 @@ const Header = () => {
                 </Menu>
               </>
             ) : (
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-blue text-sm font-medium rounded-md text-white bg-[#43AFFF33] hover:bg-blue focus:ring-2 focus:ring-offset-2"
+              <NavLink
+                end
+                to="/login"
+                className={({ isActive }) =>
+                  `group relative w-full flex justify-center py-2 px-4 border border-blue text-sm font-medium rounded-md text-white bg-[#43AFFF33] hover:bg-blue focus:ring-2 focus:ring-offset-2 ${
+                    isActive ? " hidden" : ""
+                  }`
+                }
               >
                 Login/Signup
-              </button>
+              </NavLink>
             )}
           </div>
         </div>

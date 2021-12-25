@@ -1,10 +1,22 @@
 import { userTypes } from "../types";
 
-const user = (state = {}, action) => {
+const user = (
+  state = {
+    error: null,
+  },
+  action
+) => {
   switch (action.type) {
-    case userTypes.LOGIN:
-      console.log("User Reducer");
-      return state;
+    case userTypes.LOGIN_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case userTypes.LOGIN_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      };
 
     default:
       return state;

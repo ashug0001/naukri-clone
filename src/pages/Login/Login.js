@@ -1,6 +1,6 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import { FormWrapper } from "../../components";
@@ -12,16 +12,21 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state);
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema: LoginSchema,
-    onSubmit: () => {
-      console.log("submit");
-      dispatch(userActions.login());
+    onSubmit: async ({ email, password }) => {
+      try {
+        await dispatch(userActions.login({ email, password }));
+        navigate("/posts");
+      } finally {
+      }
     },
   });
 
@@ -37,7 +42,8 @@ const Login = () => {
                 w-full p-4 text-gray-700 leading-tight 
                 focus:shadow-outline 
                 ${
-                  formik.touched.email && Boolean(formik.errors.email)
+                  (formik.touched.email && Boolean(formik.errors.email)) ||
+                  user?.error?.code === 401
                     ? " focus:outline-red-500 border-red-500"
                     : " border-gray-850 focus:outline-blue"
                 }
@@ -68,7 +74,9 @@ const Login = () => {
           className={`appearance-none bg-gray-750/20 border rounded 
                 w-full p-4 text-gray-700 leading-tight 
                 ${
-                  formik.touched.password && Boolean(formik.errors.password)
+                  (formik.touched.password &&
+                    Boolean(formik.errors.password)) ||
+                  user?.error?.code === 401
                     ? " focus:outline-red-500 border-red-500"
                     : " border-gray-850 focus:outline-blue"
                 }
@@ -81,6 +89,11 @@ const Login = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
+        {user?.error?.code === 401 && (
+          <p className="text-red-500 text-xs italic text-right">
+            {user.error.message}
+          </p>
+        )}
       </div>
       <div className="flex justify-center mb-14">
         <button
