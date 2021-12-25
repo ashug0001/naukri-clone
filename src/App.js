@@ -21,7 +21,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts" element={<Posts posts={[{ id: 1 }]} />} />
           <Route path="/post-job" element={<PostJob />} />
         </Routes>
       </BrowserRouter>
