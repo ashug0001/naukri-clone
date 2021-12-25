@@ -8,7 +8,10 @@ module.exports = {
         inputBG: "#E8E8E833",
         grayBorder: "#C6C6C6",
       },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
