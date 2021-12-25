@@ -1,7 +1,10 @@
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+
 import { FormWrapper } from "../../components";
+import { userActions } from "../../redux/actions";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required(),
@@ -9,6 +12,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -17,6 +21,7 @@ const Login = () => {
     validationSchema: LoginSchema,
     onSubmit: () => {
       console.log("submit");
+      dispatch(userActions.login());
     },
   });
 
@@ -80,7 +85,7 @@ const Login = () => {
       <div className="flex justify-center mb-14">
         <button
           className="bg-blue text-white py-3 px-14 rounded focus:outline-none focus:shadow-outline"
-          type="button"
+          type="submit"
         >
           Login
         </button>
