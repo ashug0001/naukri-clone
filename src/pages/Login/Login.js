@@ -9,7 +9,7 @@ const Login = () => {
           Email address
         </label>
         <input
-          class="appearance-none bg-inputBG border border-grayBorder rounded 
+          class="appearance-none bg-gray-750/20 border border-gray-850 rounded 
                 w-full p-4 text-gray-700 leading-tight 
                 focus:outline-blue focus:shadow-outline"
           id="email"
@@ -31,7 +31,7 @@ const Login = () => {
           </a>
         </div>
         <input
-          class="appearance-none bg-inputBG border border-grayBorder rounded 
+          class="appearance-none bg-gray-750/20 border border-gray-850 rounded 
                 w-full p-4 text-gray-700 leading-tight 
                 focus:outline-blue focus:shadow-outline"
           id="password"

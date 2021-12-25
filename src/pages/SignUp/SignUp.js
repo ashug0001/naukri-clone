@@ -31,7 +31,7 @@ const SignUp = () => {
           Full name
         </label>
         <input
-          className="appearance-none bg-inputBG border border-grayBorder rounded 
+          className="appearance-none bg-gray-750/20 border border-gray-850 rounded 
             w-full p-4 text-gray-700 leading-tight 
             focus:outline-blue focus:shadow-outline"
           id="full-name"
@@ -45,7 +45,7 @@ const SignUp = () => {
           Email address
         </label>
         <input
-          className="appearance-none bg-inputBG border border-grayBorder rounded 
+          className="appearance-none bg-gray-750/20 border border-gray-850 rounded 
             w-full p-4 text-gray-700 leading-tight 
             focus:outline-blue focus:shadow-outline"
           id="email"
@@ -63,7 +63,7 @@ const SignUp = () => {
             Create Password
           </label>
           <input
-            className="appearance-none bg-inputBG border border-grayBorder rounded 
+            className="appearance-none bg-gray-750/20 border border-gray-850 rounded 
             w-full p-4 text-gray-700 leading-tight 
             focus:outline-blue focus:shadow-outline"
             id="password"
@@ -80,7 +80,7 @@ const SignUp = () => {
             Confirm Password
           </label>
           <input
-            className="appearance-none bg-inputBG border border-grayBorder rounded 
+            className="appearance-none bg-gray-750/20 border border-gray-850 rounded 
             w-full p-4 text-gray-700 leading-tight 
             focus:outline-blue focus:shadow-outline"
             id="confirm-password"
@@ -94,7 +94,7 @@ const SignUp = () => {
           Skills
         </label>
         <input
-          className="appearance-none bg-inputBG border border-grayBorder rounded 
+          className="appearance-none bg-gray-750/20 border border-gray-850 rounded 
             w-full p-4 text-gray-700 leading-tight 
             focus:outline-blue focus:shadow-outline"
           id="skills"
