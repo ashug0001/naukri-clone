@@ -1,7 +1,9 @@
 import { authTypes } from "../types";
 
+const user = JSON.parse(localStorage.getItem("user"));
+
 const INITIAL_STATE = {
-  user: null,
+  user,
   error: null,
   reset: null,
 };

@@ -158,7 +158,7 @@ const SignUp = () => {
           handleChange={handleChange}
         />
       </div>
-      {error.message && (
+      {error?.message && (
         <p className="text-red-500 text-xs italic mb-5">{error.message}</p>
       )}
       <div className="flex justify-center mb-11">

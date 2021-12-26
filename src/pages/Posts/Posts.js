@@ -9,7 +9,6 @@ const Posts = () => {
   const { jobs = [] } = useSelector((state) => state.jobs);
 
   useEffect(() => {
-    console.log("Posts");
     (async () => {
       await dispatch(jobsActions.allJobs());
     })();

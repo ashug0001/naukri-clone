@@ -48,7 +48,10 @@ const TrustUs = () => {
       </h5>
       <div className="why-us__cards flex flex-wrap">
         {TRUST_CARD.map((card) => (
-          <div className="basis-1/4 px-4 h-28 flex items-center justify-center">
+          <div
+            key={card.id}
+            className="basis-1/4 px-4 h-28 flex items-center justify-center"
+          >
             <img
               src={card.src}
               key={card.id}

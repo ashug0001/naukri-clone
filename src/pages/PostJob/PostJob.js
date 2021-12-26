@@ -90,14 +90,14 @@ const PostJob = () => {
           helperText={touched.location && errors.location}
         />
       </div>
-      {error.message && (
+      {error?.message && (
         <p className="text-red-500 text-xs italic mb-5 -mt-9">
           {error.message}
         </p>
       )}
       <div className="flex justify-center mb-14">
         <button
-          class="bg-blue text-white py-3 px-14 rounded focus:outline-none focus:shadow-outline"
+          className="bg-blue text-white py-3 px-14 rounded focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Post
