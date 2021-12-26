@@ -2,7 +2,7 @@ import http from "../../utils/http";
 import { jobsTypes } from "../types";
 
 const allJobs =
-  (page = "1") =>
+  (page = 1) =>
   async (dispatch) => {
     try {
       const response = await http.get("recruiters/jobs", {

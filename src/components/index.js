@@ -8,3 +8,4 @@ export { default as ApplicationCard } from "./ApplicationCard";
 export { default as TextField } from "./TextField";
 export { default as ProtectedRoutes } from "./ProtectedRoutes";
 export { default as AuthRoute } from "./AuthRoute";
+export { default as Pagination } from "./Pagination";
