@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { FormWrapper } from "../../components";
+import { FormWrapper, TextField } from "../../components";
 import { authActions } from "../../redux/actions";
 
 const Schema = Yup.object().shape({
@@ -55,61 +55,43 @@ const ResetPassword = () => {
         Enter your new password below.
       </p>
       <div className="mb-5">
-        <label className="block text-gray-700 text-sm mb-2" htmlFor="password">
-          New password
-        </label>
-        <input
-          className={`appearance-none bg-gray-750/20 border  rounded 
-                w-full p-4 text-gray-700 leading-tight 
-                 focus:shadow-outline
-                 ${
-                   (formik.touched.password &&
-                     Boolean(formik.errors.password)) ||
-                   error?.message
-                     ? " focus:outline-red-500 border-red-500"
-                     : " border-gray-850 focus:outline-blue"
-                 }
-                 `}
+        <TextField
           id="password"
           type="password"
           placeholder="Enter your password"
           name="password"
+          required
+          label="New password"
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={
+            (formik.touched.password && Boolean(formik.errors.password)) ||
+            Boolean(error?.message)
+          }
         />
       </div>
       <div className="mb-10">
-        <label
-          className="block text-gray-700 text-sm mb-2"
-          htmlFor="confirm-password"
-        >
-          Confirm new password
-        </label>
-        <input
-          className={`appearance-none bg-gray-750/20 border  rounded 
-                w-full p-4 text-gray-700 leading-tight 
-                focus:shadow-outline
-                ${
-                  (formik.touched.confirmPassword &&
-                    Boolean(formik.errors.confirmPassword)) ||
-                  error?.message
-                    ? " focus:outline-red-500 border-red-500"
-                    : " border-gray-850 focus:outline-blue"
-                }
-                `}
+        <TextField
           id="confirm-password"
           type="password"
           placeholder="Enter your password"
           name="confirmPassword"
+          required
+          label="Confirm new password"
           value={formik.values.confirmPassword}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={
+            (formik.touched.confirmPassword &&
+              Boolean(formik.errors.confirmPassword)) ||
+            Boolean(error?.message)
+          }
+          helperText={
+            (formik.touched.confirmPassword && formik.errors.confirmPassword) ||
+            error?.message
+          }
         />
-        <p className="text-red-500 text-xs italic text-right">
-          {(formik.touched.confirmPassword && formik.errors.confirmPassword) ||
-            error?.message}
-        </p>
       </div>
       <div className="flex justify-center">
         <button

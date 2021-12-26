@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { FormWrapper } from "../../components";
+import { FormWrapper, TextField } from "../../components";
 import { authActions } from "../../redux/actions";
 
 const Schema = Yup.object().shape({
@@ -37,25 +37,17 @@ const ForgotPassword = () => {
         instructions to reset your password.
       </p>
       <div className="mb-10">
-        <label className="block text-gray-700 text-sm mb-2" htmlFor="email">
-          Email address
-        </label>
-        <input
-          className={`appearance-none bg-gray-750/20 border  rounded 
-                w-full p-4  leading-tight focus:shadow-outline
-                ${
-                  formik.touched.email && Boolean(formik.errors.email)
-                    ? " focus:outline-red-500 border-red-500"
-                    : " border-gray-850 focus:outline-blue"
-                }
-                `}
+        <TextField
           id="email"
           type="email"
           name="email"
-          placeholder="Email address"
+          placeholder="Enter location"
+          label="Email address"
+          required
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={formik.touched.email && Boolean(formik.errors.email)}
         />
       </div>
       <div className="flex justify-center">

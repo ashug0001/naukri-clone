@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
-import { FormWrapper } from "../../components";
+import { FormWrapper, TextField } from "../../components";
 import { authActions } from "../../redux/actions";
 
 const LoginSchema = Yup.object().shape({
@@ -34,27 +34,20 @@ const Login = () => {
     <FormWrapper handleSubmit={formik.handleSubmit}>
       <h2 className="text-primary font-medium text-2xl mb-6">Login</h2>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm mb-2" htmlFor="email">
-          Email address
-        </label>
-        <input
-          className={`appearance-none bg-gray-750/20 border  rounded 
-                w-full p-4 text-gray-700 leading-tight 
-                focus:shadow-outline 
-                ${
-                  (formik.touched.email && Boolean(formik.errors.email)) ||
-                  error?.code === 401
-                    ? " focus:outline-red-500 border-red-500"
-                    : " border-gray-850 focus:outline-blue"
-                }
-                `}
+        <TextField
           id="email"
           type="email"
           name="email"
           placeholder="Email address"
+          label="Email address"
+          required
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          error={
+            (formik.touched.email && Boolean(formik.errors.email)) ||
+            Boolean(error?.message)
+          }
         />
       </div>
       <div className="mb-10">
