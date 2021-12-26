@@ -61,9 +61,17 @@ const signUp = (body) => async (dispatch) => {
   }
 };
 
+const logout = () => (dispatch) => {
+  localStorage.removeItem("user");
+  dispatch({
+    type: authTypes.LOGOUT,
+  });
+};
+
 export default {
   login,
   forgotPassword,
   resetPassword,
   signUp,
+  logout,
 };
