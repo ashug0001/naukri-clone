@@ -8,6 +8,7 @@ const jobs = (
       limit: 20,
     },
     candidates: [],
+    error: null,
   },
   action
 ) => {
@@ -24,11 +25,23 @@ const jobs = (
         ...state,
         candidates: action.payload,
       };
-    
+
     case jobsTypes.CLEAR_CANDIDATES:
       return {
         ...state,
         candidates: [],
+      };
+
+    case jobsTypes.CREATE_JOB_SUCCESS:
+      return {
+        ...state,
+        jobs: [action.payload, ...state.jobs],
+      };
+
+    case jobsTypes.CREATE_JOB_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
 
     default:

@@ -9,14 +9,16 @@ const TextField = ({
   value,
   handleChange,
   handleBlur,
+  rows,
   ...rest
 }) => {
+  const Component = rows ? "textarea" : "input";
   return (
     <>
       <label className="block text-gray-700 text-sm mb-2" htmlFor={id}>
         {label}
       </label>
-      <input
+      <Component
         className={`appearance-none bg-gray-750/20 border 
           rounded w-full p-4 text-gray-700 leading-tight 
           focus:shadow-outline
@@ -31,6 +33,7 @@ const TextField = ({
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
+        rows={rows}
         {...rest}
       />
       {helperText && (

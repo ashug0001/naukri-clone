@@ -41,8 +41,26 @@ const clearCandidates = () => (dispatch) => {
   });
 };
 
+const createJob = (body) => async (dispatch) => {
+  try {
+    const response = await http.post("/jobs/", {
+      location: body.location,
+    });
+    dispatch({
+      type: jobsTypes.CREATE_JOB_SUCCESS,
+      payload: response.data.data,
+    });
+  } catch (error) {
+    console.log({ error });
+    const payload = error?.response?.data;
+    dispatch({ type: jobsTypes.CREATE_JOB_FAILURE, payload });
+    throw new Error();
+  }
+};
+
 export default {
   allJobs,
   jobCandidates,
   clearCandidates,
+  createJob,
 };
