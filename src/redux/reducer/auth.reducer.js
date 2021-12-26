@@ -11,6 +11,7 @@ const auth = (
   switch (action.type) {
     case authTypes.LOGIN_SUCCESS:
     case authTypes.RESET_PASSWORD_SUCCESS:
+    case authTypes.SIGNUP_SUCCESS:
       return {
         ...state,
         user: action.payload,
@@ -25,6 +26,7 @@ const auth = (
     case authTypes.LOGIN_FAILURE:
     case authTypes.FORGOT_PASSWORD_FAILURE:
     case authTypes.RESET_PASSWORD_FAILURE:
+    case authTypes.SIGNUP_FAILURE:
       return {
         ...state,
         error: action.payload,

@@ -46,8 +46,24 @@ const resetPassword = (body) => async (dispatch) => {
   }
 };
 
+const signUp = (body) => async (dispatch) => {
+  try {
+    const response = await http.post("/auth/register", { ...body });
+    localStorage.setItem("user", JSON.stringify(response.data.data));
+    dispatch({
+      type: authTypes.SIGNUP_SUCCESS,
+      payload: response.data.data,
+    });
+  } catch (error) {
+    const payload = error?.response?.data;
+    dispatch({ type: authTypes.SIGNUP_FAILURE, payload });
+    throw new Error();
+  }
+};
+
 export default {
   login,
   forgotPassword,
   resetPassword,
+  signUp,
 };
