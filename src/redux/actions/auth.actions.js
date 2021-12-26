@@ -1,0 +1,38 @@
+import { authTypes } from "../types";
+import http from "../../utils/http";
+
+const login = (user) => async (dispatch) => {
+  try {
+    const response = await http.post("/auth/login", { ...user });
+    localStorage.setItem("user", JSON.stringify(response.data.data));
+    dispatch({ type: authTypes.LOGIN_SUCCESS, payload: response.data.data });
+  } catch (error) {
+    const payload = error?.response?.data;
+    dispatch({ type: authTypes.LOGIN_FAILURE, payload });
+    throw new Error();
+  }
+};
+
+const resetPassword =
+  ({ email }) =>
+  async (dispatch) => {
+    try {
+      const response = await http.get("/auth/resetpassword", {
+        params: { email },
+      });
+      localStorage.setItem("resetPass", JSON.stringify(response.data.data));
+      dispatch({
+        type: authTypes.RESET_PASSWORD_SUCCESS,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      const payload = error?.response?.data;
+      dispatch({ type: authTypes.RESET_PASSWORD_FAILURE, payload });
+      throw new Error();
+    }
+  };
+
+export default {
+  login,
+  resetPassword,
+};

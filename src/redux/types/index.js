@@ -1,1 +1,1 @@
-export { default as userTypes } from "./user.types";
+export { default as authTypes } from "./auth.types";

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import { FormWrapper } from "../../components";
-import { userActions } from "../../redux/actions";
+import { authActions } from "../../redux/actions";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required(),
@@ -14,7 +14,7 @@ const LoginSchema = Yup.object().shape({
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state);
+  const { user, error } = useSelector((state) => state.auth);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -23,7 +23,7 @@ const Login = () => {
     validationSchema: LoginSchema,
     onSubmit: async ({ email, password }) => {
       try {
-        await dispatch(userActions.login({ email, password }));
+        await dispatch(authActions.login({ email, password }));
         navigate("/posts");
       } finally {
       }
@@ -43,7 +43,7 @@ const Login = () => {
                 focus:shadow-outline 
                 ${
                   (formik.touched.email && Boolean(formik.errors.email)) ||
-                  user?.error?.code === 401
+                  error?.code === 401
                     ? " focus:outline-red-500 border-red-500"
                     : " border-gray-850 focus:outline-blue"
                 }
@@ -76,7 +76,7 @@ const Login = () => {
                 ${
                   (formik.touched.password &&
                     Boolean(formik.errors.password)) ||
-                  user?.error?.code === 401
+                  error?.code === 401
                     ? " focus:outline-red-500 border-red-500"
                     : " border-gray-850 focus:outline-blue"
                 }
@@ -89,9 +89,9 @@ const Login = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        {user?.error?.code === 401 && (
+        {error?.code === 401 && (
           <p className="text-red-500 text-xs italic text-right">
-            {user.error.message}
+            {error.message}
           </p>
         )}
       </div>
