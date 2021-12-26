@@ -10,18 +10,20 @@ const auth = (
 ) => {
   switch (action.type) {
     case authTypes.LOGIN_SUCCESS:
+    case authTypes.RESET_PASSWORD_SUCCESS:
       return {
         ...state,
         user: action.payload,
       };
 
-    case authTypes.RESET_PASSWORD_SUCCESS:
+    case authTypes.FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
         reset: action.payload,
       };
 
     case authTypes.LOGIN_FAILURE:
+    case authTypes.FORGOT_PASSWORD_FAILURE:
     case authTypes.RESET_PASSWORD_FAILURE:
       return {
         ...state,

@@ -20,7 +20,7 @@ const ForgotPassword = () => {
     validationSchema: Schema,
     onSubmit: async ({ email }) => {
       try {
-        await dispatch(authActions.resetPassword({ email }));
+        await dispatch(authActions.forgotPassword({ email }));
         navigate("/reset-password");
       } finally {
       }
@@ -41,7 +41,7 @@ const ForgotPassword = () => {
           Email address
         </label>
         <input
-          className={`appearance-none bg-gray-750/20 border border-gray-850 rounded 
+          className={`appearance-none bg-gray-750/20 border  rounded 
                 w-full p-4  leading-tight focus:shadow-outline
                 ${
                   formik.touched.email && Boolean(formik.errors.email)

@@ -13,26 +13,41 @@ const login = (user) => async (dispatch) => {
   }
 };
 
-const resetPassword =
+const forgotPassword =
   ({ email }) =>
   async (dispatch) => {
     try {
       const response = await http.get("/auth/resetpassword", {
         params: { email },
       });
-      localStorage.setItem("resetPass", JSON.stringify(response.data.data));
       dispatch({
-        type: authTypes.RESET_PASSWORD_SUCCESS,
+        type: authTypes.FORGOT_PASSWORD_SUCCESS,
         payload: response.data.data,
       });
     } catch (error) {
       const payload = error?.response?.data;
-      dispatch({ type: authTypes.RESET_PASSWORD_FAILURE, payload });
+      dispatch({ type: authTypes.FORGOT_PASSWORD_FAILURE, payload });
       throw new Error();
     }
   };
 
+const resetPassword = (body) => async (dispatch) => {
+  try {
+    const response = await http.post("/auth/resetpassword", { ...body });
+    localStorage.setItem("user", JSON.stringify(response.data.data));
+    dispatch({
+      type: authTypes.RESET_PASSWORD_SUCCESS,
+      payload: response.data.data,
+    });
+  } catch (error) {
+    const payload = error?.response?.data;
+    dispatch({ type: authTypes.RESET_PASSWORD_FAILURE, payload });
+    throw new Error();
+  }
+};
+
 export default {
   login,
+  forgotPassword,
   resetPassword,
 };

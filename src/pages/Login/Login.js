@@ -14,7 +14,7 @@ const LoginSchema = Yup.object().shape({
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user, error } = useSelector((state) => state.auth);
+  const { error } = useSelector((state) => state.auth);
   const formik = useFormik({
     initialValues: {
       email: "",
