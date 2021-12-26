@@ -1,4 +1,4 @@
-const Radio = ({ label, Icon, id, checked, ...rest }) => {
+const RadioInput = ({ label, Icon, id, checked, handleChange, ...rest }) => {
   return (
     <div className="radio-input">
       <input
@@ -6,6 +6,7 @@ const Radio = ({ label, Icon, id, checked, ...rest }) => {
         type="radio"
         id={id}
         checked={checked}
+        onChange={handleChange}
         {...rest}
       />
       <label
@@ -25,4 +26,4 @@ const Radio = ({ label, Icon, id, checked, ...rest }) => {
   );
 };
 
-export default Radio;
+export default RadioInput;
