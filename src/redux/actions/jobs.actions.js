@@ -25,17 +25,24 @@ const jobCandidates =
     try {
       const response = await http.get(`recruiters/jobs/${id}/candidates`);
       dispatch({
-        type: jobsTypes.JOB_CANDITATES_SUCCESS,
+        type: jobsTypes.JOB_CANDIDATES_SUCCESS,
         payload: response.data.data,
       });
     } catch (error) {
       const payload = error?.response?.data;
-      dispatch({ type: jobsTypes.JOB_CANDITATES_FAILURE, payload });
+      dispatch({ type: jobsTypes.JOB_CANDIDATES_FAILURE, payload });
       throw new Error();
     }
   };
 
+const clearCandidates = () => (dispatch) => {
+  dispatch({
+    type: jobsTypes.CLEAR_CANDIDATES,
+  });
+};
+
 export default {
   allJobs,
   jobCandidates,
+  clearCandidates,
 };

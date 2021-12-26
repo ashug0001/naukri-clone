@@ -7,6 +7,7 @@ const jobs = (
       count: 0,
       limit: 20,
     },
+    candidates: [],
   },
   action
 ) => {
@@ -16,6 +17,18 @@ const jobs = (
         ...state,
         jobs: action.payload.data,
         metadata: action.payload.metadata,
+      };
+
+    case jobsTypes.JOB_CANDIDATES_SUCCESS:
+      return {
+        ...state,
+        candidates: action.payload,
+      };
+    
+    case jobsTypes.CLEAR_CANDIDATES:
+      return {
+        ...state,
+        candidates: [],
       };
 
     default:

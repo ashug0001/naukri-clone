@@ -1,13 +1,29 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Dialog, Transition } from "@headlessui/react";
 import { ClipboardListIcon, XIcon } from "@heroicons/react/solid";
 import ApplicationCard from "../ApplicationCard";
+import { jobsActions } from "../../redux/actions";
 
 const ApplicationModal = ({
   open = false,
   handleClose = () => null,
-  applications = [{ id: 1 }],
+  job = null,
 }) => {
+  const dispatch = useDispatch();
+  const { candidates = [] } = useSelector((state) => state.jobs);
+
+  useEffect(() => {
+    if (!open) return;
+    (async () => {
+      await dispatch(jobsActions.jobCandidates(job.id));
+    })();
+
+    return () => {
+      dispatch(jobsActions.clearCandidates());
+    };
+  }, [open]);
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -61,13 +77,16 @@ const ApplicationModal = ({
                 </div>
                 <div>
                   <p className="mt-5 mb-2.5 text-sm text-primary">
-                    Total 35 applications
+                    Total {candidates.length} applications
                   </p>
                   <div className="rounded-lg bg-gray-950/20 h-[598px]">
-                    {applications.length > 0 ? (
+                    {candidates.length > 0 ? (
                       <div className="flex gap-8 p-2">
-                        {applications.map((app) => (
-                          <ApplicationCard application={app} />
+                        {candidates.map((cand) => (
+                          <ApplicationCard
+                            application={cand}
+                            key={candidates.id}
+                          />
                         ))}
                       </div>
                     ) : (
