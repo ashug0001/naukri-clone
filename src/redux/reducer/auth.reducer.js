@@ -25,7 +25,7 @@ const auth = (state = INITIAL_STATE, action) => {
       };
 
     case authTypes.LOGOUT:
-      return INITIAL_STATE;
+      return { ...INITIAL_STATE, user: null };
 
     case authTypes.LOGIN_FAILURE:
     case authTypes.FORGOT_PASSWORD_FAILURE:

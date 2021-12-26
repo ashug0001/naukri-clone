@@ -7,7 +7,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import SignUp from "./pages/SignUp";
 
-import { Layout } from "./components";
+import { AuthRoute, Layout, ProtectedRoutes } from "./components";
 import PostJob from "./pages/PostJob";
 import Posts from "./pages/Posts";
 
@@ -17,12 +17,54 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/posts" element={<Posts posts={[{ id: 1 }]} />} />
-          <Route path="/post-job" element={<PostJob />} />
+          <Route
+            path="/login"
+            element={
+              <AuthRoute>
+                <Login />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/forgot-password"
+            element={
+              <ProtectedRoutes>
+                <ForgotPassword />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <ProtectedRoutes>
+                <ResetPassword />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <AuthRoute>
+                <SignUp />
+              </AuthRoute>
+            }
+          />
+          <Route
+            path="/posts"
+            element={
+              <ProtectedRoutes>
+                <Posts />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/post-job"
+            element={
+              <ProtectedRoutes>
+                <PostJob />
+              </ProtectedRoutes>
+            }
+          />
         </Routes>
       </Layout>
     </BrowserRouter>
